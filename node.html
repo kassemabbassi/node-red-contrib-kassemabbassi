@@ -1,0 +1,46 @@
+<script type="text/javascript">
+    RED.nodes.registerType('kassem', {
+        category: 'function',
+        color: '#FFCC66',
+        defaults: {
+            name: { value: "" },
+            mode: { value: "c2f" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-thermometer-half",
+        label: function () {
+            return this.name || (this.mode === "f2c" ? "°F → °C" : "°C → °F");
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="kassem">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-exchange"></i> Mode</label>
+        <select id="node-input-mode">
+            <option value="c2f">Celsius vers Fahrenheit</option>
+            <option value="f2c">Fahrenheit vers Celsius</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="kassem">
+    <p>Convertit une température entre Celsius et Fahrenheit.</p>
+    <h3>Entrée</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">nombre</span></dt>
+        <dd>la température à convertir.</dd>
+    </dl>
+    <h3>Sortie</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">nombre</span></dt>
+        <dd>la température convertie.</dd>
+        <dt>unit <span class="property-type">chaîne</span></dt>
+        <dd>l'unité du résultat (°F ou °C).</dd>
+    </dl>
+</script>
